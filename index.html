@@ -6,9 +6,23 @@
     <title>مطعم مراسيم العرب - البدائع</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-    <style> body { font-family: 'Tajawal', sans-serif; } </style>
+    <style> 
+        body { font-family: 'Tajawal', sans-serif; }
+        .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); }
+        .modal-content { background-color: white; margin: 20% auto; padding: 20px; border-radius: 20px; width: 80%; max-width: 400px; text-align: center; position: relative; }
+    </style>
 </head>
 <body class="bg-gray-50 pb-40">
+
+    <div id="successModal" class="modal">
+        <div class="modal-content shadow-2xl">
+            <span onclick="closeModal()" class="absolute top-2 left-4 text-2xl font-bold cursor-pointer text-gray-400">&times;</span>
+            <div class="text-green-500 text-5xl mb-4">✅</div>
+            <h2 class="text-xl font-bold mb-2">تم استلام طلبك بنجاح!</h2>
+            <p id="successMessage" class="text-gray-600 mb-4"></p>
+            <button onclick="closeModal()" class="bg-orange-600 text-white px-8 py-2 rounded-lg font-bold">حسناً</button>
+        </div>
+    </div>
 
     <header class="bg-orange-600 text-white p-6 text-center shadow-lg">
         <h1 class="text-2xl font-bold">مطعم مراسيم العرب</h1>
@@ -19,38 +33,26 @@
         <div class="grid gap-4">
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
                 <div class="flex items-center gap-3">
-                    <img src="https://via.placeholder.com/60" alt="لحم" class="w-16 h-16 rounded-lg object-cover border">
+                    <img src="https://via.placeholder.com/60" class="w-16 h-16 rounded-lg object-cover border">
                     <div><h3 class="font-bold">نفر لحم مندي</h3><p class="text-orange-600">75 ريال</p></div>
                 </div>
-                <button onclick="addToCart('نفر لحم مندي', 75)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">إضافة +</button>
+                <button onclick="addToCart('نفر لحم مندي', 75)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold">إضافة +</button>
             </div>
-
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
                 <div class="flex items-center gap-3">
-                    <img src="https://via.placeholder.com/60" alt="دجاج" class="w-16 h-16 rounded-lg object-cover border">
+                    <img src="https://via.placeholder.com/60" class="w-16 h-16 rounded-lg object-cover border">
                     <div><h3 class="font-bold">حبة دجاج مع الأرز</h3><p class="text-orange-600">40 ريال</p></div>
                 </div>
-                <button onclick="addToCart('حبة دجاج مع الأرز', 40)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">إضافة +</button>
-            </div>
-
-            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <img src="https://via.placeholder.com/60" alt="مظبي" class="w-16 h-16 rounded-lg object-cover border">
-                    <div><h3 class="font-bold">مظبي دجاج</h3><p class="text-orange-600">38 ريال</p></div>
-                </div>
-                <button onclick="addToCart('مظبي دجاج', 38)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">إضافة +</button>
+                <button onclick="addToCart('حبة دجاج مع الأرز', 40)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold">إضافة +</button>
             </div>
         </div>
     </main>
 
     <div class="fixed bottom-0 left-0 right-0 bg-white p-4 shadow-2xl max-w-md mx-auto rounded-t-2xl border-t">
         <div class="flex justify-between items-center mb-4">
-            <span class="font-bold text-lg text-gray-700">المجموع المستحق:</span>
-            <span class="text-orange-600 text-2xl font-bold"><span id="total-price">0</span> ريال</span>
+            <span class="font-bold text-lg">المجموع: <span id="total-price" class="text-orange-600 text-2xl">0</span> ريال</span>
         </div>
-        <button id="send-btn" onclick="sendOrder()" class="w-full bg-green-600 text-white py-4 rounded-xl font-bold text-lg shadow-lg active:scale-95 transition">
-            إتمام الطلب (توصيل للموقع)
-        </button>
+        <button id="send-btn" onclick="sendOrder()" class="w-full bg-green-600 text-white py-4 rounded-xl font-bold text-lg shadow-lg">إتمام الطلب</button>
     </div>
 
     <script>
@@ -63,74 +65,59 @@
             document.getElementById('total-price').innerText = total;
         }
 
+        function closeModal() {
+            document.getElementById('successModal').style.display = "none";
+            location.reload(); // تحديث الصفحة لتصفير السلة بعد الإغلاق
+        }
+
         async function sendOrder() {
-            if (cart.length === 0) return alert("السلة فارغة! اختر بعض الأطباق أولاً.");
+            if (cart.length === 0) return alert("السلة فارغة!");
 
-            // جمع بيانات العميل
-            let customerName = prompt("فضلاً ادخل اسمك الكريم:");
-            if(!customerName) return;
-
-            let customerPhone = prompt("ادخل رقم جوالك (مثال: 05XXXXXXXX):");
-            const phoneRegex = /^(05)\d{8}$/;
-            if(!customerPhone || !phoneRegex.test(customerPhone)) {
-                alert("يرجى إدخال رقم جوال سعودي صحيح يبدأ بـ 05 ويتكون من 10 أرقام");
-                return;
-            }
-
-            let addressNote = prompt("وصف دقيق للعنوان (رقم البيت، اسم المسجد، أو أي معلم قريب):");
-            if(!addressNote) addressNote = "لم يتم تقديم وصف إضافي";
+            let customerName = prompt("ادخل اسمك:");
+            let customerPhone = prompt("ادخل جوالك:");
+            let addressNote = prompt("وصف العنوان:");
+            
+            if(!customerName || !customerPhone) return;
 
             const btn = document.getElementById('send-btn');
             btn.disabled = true;
-            btn.innerText = "جاري جلب موقعك وإرسال الطلب...";
+            btn.innerText = "جاري الإرسال...";
 
-            // طلب الموقع الجغرافي بأعلى دقة ممكنة
-            let googleMapsLink = "العميل لم يشارك الموقع";
-            if (confirm("هل تسمح للمطعم بالوصول لموقعك الحالي لضمان دقة التوصيل؟")) {
-                try {
-                    const position = await new Promise((resolve, reject) => {
-                        navigator.geolocation.getCurrentPosition(resolve, reject, {
-                            enableHighAccuracy: true, // استخدام GPS الحقيقي
-                            timeout: 10000,           // انتظار 10 ثواني كحد أقصى
-                            maximumAge: 0             // عدم استخدام موقع قديم
-                        });
-                    });
-                    googleMapsLink = `https://www.google.com/maps?q=${position.coords.latitude},${position.coords.longitude}`;
-                } catch (err) {
-                    alert("تنبيه: لم نتمكن من تحديد موقعك بدقة، سنعتمد على الوصف الذي كتبته.");
-                }
-            }
+            let googleMapsLink = "لم يشارك الموقع";
+            try {
+                const position = await new Promise((resolve, reject) => {
+                    navigator.geolocation.getCurrentPosition(resolve, reject, {enableHighAccuracy: true});
+                });
+                googleMapsLink = `https://www.google.com/maps?q=${position.coords.latitude},${position.coords.longitude}`;
+            } catch (err) {}
 
-            let orderSummary = cart.map(item => `${item.name}`).join(' + ');
+            let orderSummary = cart.map(item => item.name).join(' + ');
 
             try {
-                // إرسال البيانات لـ Formspree
                 const response = await fetch("https://formspree.io/f/xreaevqo", {
                     method: "POST",
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        "اسم الزبون": customerName,
-                        "رقم الجوال": customerPhone,
-                        "وصف العنوان": addressNote,
-                        "موقع GPS": googleMapsLink,
-                        "تفاصيل الطلب": orderSummary,
-                        "المجموع": total + " ريال",
-                        "التوقيت": new Date().toLocaleString('ar-SA')
+                        "الاسم": customerName,
+                        "الجوال": customerPhone,
+                        "الوصف": addressNote,
+                        "الموقع": googleMapsLink,
+                        "الطلب": orderSummary,
+                        "المجموع": total + " ريال"
                     })
                 });
 
                 if (response.ok) {
-                    alert("✅ تم استلام طلبك يا " + customerName + "\nسنقوم بالتواصل معك قريباً للتوصيل.");
+                    // إظهار النافذة المنبثقة بدلاً من الـ Alert
+                    document.getElementById('successMessage').innerText = "يا " + customerName + "، استلمنا طلبك وبنتواصل معك الحين على رقمك.";
+                    document.getElementById('successModal').style.display = "block";
                     cart = []; total = 0;
-                    document.getElementById('total-price').innerText = "0";
-                } else {
-                    alert("❌ فشل الإرسال، تأكدي من أن الحساب مفعل في Formspree");
                 }
             } catch (err) {
-                alert("❌ خطأ في الاتصال بالإنترنت");
+                alert("خطأ في الاتصال");
             } finally {
                 btn.disabled = false;
-                btn.innerText = "إتمام الطلب (توصيل للموقع)";
+                btn.innerText = "إتمام الطلب";
             }
         }
     </script>
