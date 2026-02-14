@@ -27,7 +27,6 @@
         </div>
     </div>
 
-    
     <header class="bg-orange-600 text-white p-6 text-center shadow-lg">
         <h1 class="text-2xl font-bold">مطعم مراسيم العرب</h1>
         <p class="text-sm">أصالة المذاق في البدائع | الدفع عند الاستلام</p>
@@ -35,126 +34,81 @@
 
     <main class="p-4 max-w-md mx-auto">
         
-        <h2 class="category-title">الذبائح (حسب الطلب)</h2>
+        <h2 class="category-title">الإدامات</h2>
         <div class="grid gap-4">
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center text-xs text-gray-400">صورة</div>
-                    <div><h3 class="font-bold">تيس كامل مندي</h3><p class="text-orange-600">1380 ريال</p></div>
+                <div><h3 class="font-bold">مشكل فرن</h3><p class="text-orange-600">5 / 10 ريال</p></div>
+                <div class="flex gap-1">
+                    <button onclick="addToCart('مشكل فرن كبير', 10)" class="bg-orange-600 text-white px-3 py-2 rounded-lg text-sm transition">كبير</button>
+                    <button onclick="addToCart('مشكل فرن صغير', 5)" class="bg-orange-600 text-white px-3 py-2 rounded-lg text-sm transition">صغير</button>
                 </div>
-                <button onclick="addToCart('تيس كامل مندي', 1380)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">إضافة +</button>
             </div>
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center text-xs text-gray-400">صورة</div>
-                    <div><h3 class="font-bold">نص تيس مندي</h3><p class="text-orange-600">690 ريال</p></div>
+                <div><h3 class="font-bold">مشكل خضار</h3><p class="text-orange-600">5 / 10 ريال</p></div>
+                <div class="flex gap-1">
+                    <button onclick="addToCart('مشكل خضار كبير', 10)" class="bg-orange-600 text-white px-3 py-2 rounded-lg text-sm transition">كبير</button>
+                    <button onclick="addToCart('مشكل خضار صغير', 5)" class="bg-orange-600 text-white px-3 py-2 rounded-lg text-sm transition">صغير</button>
                 </div>
-                <button onclick="addToCart('نص تيس مندي', 690)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">إضافة +</button>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <div><h3 class="font-bold">بامية</h3><p class="text-orange-600">5 / 10 ريال</p></div>
+                <div class="flex gap-1">
+                    <button onclick="addToCart('بامية كبير', 10)" class="bg-orange-600 text-white px-3 py-2 rounded-lg text-sm transition">كبير</button>
+                    <button onclick="addToCart('بامية صغير', 5)" class="bg-orange-600 text-white px-3 py-2 rounded-lg text-sm transition">صغير</button>
+                </div>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <div><h3 class="font-bold">ملوخية</h3><p class="text-orange-600">5 / 10 ريال</p></div>
+                <div class="flex gap-1">
+                    <button onclick="addToCart('ملوخية كبير', 10)" class="bg-orange-600 text-white px-3 py-2 rounded-lg text-sm transition">كبير</button>
+                    <button onclick="addToCart('ملوخية صغير', 5)" class="bg-orange-600 text-white px-3 py-2 rounded-lg text-sm transition">صغير</button>
+                </div>
             </div>
         </div>
 
-        <h2 class="category-title">الدجاج مع الأرز</h2>
+        <h2 class="category-title">المقبلات والسلطات</h2>
         <div class="grid gap-4">
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center text-xs text-gray-400">صورة</div>
-                    <div><h3 class="font-bold">حبة دجاج (مندي)</h3><p class="text-orange-600">21/42 ريال</p></div>
-                </div>
-                <button onclick="addToCart('حبة دجاج مندي مع الأرز', 42)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">كاملة</button>
-                <button onclick="addToCart('نص حبة دجاج مندي مع الأرز', 21)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">نص</button>
+                <div><h3 class="font-bold">تبولة</h3><p class="text-orange-600">5 ريال</p></div>
+                <button onclick="addToCart('تبولة', 5)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold transition">إضافة +</button>
             </div>
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center text-xs text-gray-400">صورة</div>
-                    <div><h3 class="font-bold">حبة دجاج (مضغوط)</h3><p class="text-orange-600">21/42 ريال</p></div>
-                </div>
-                <button onclick="addToCart('حبة دجاج مضغوط مع الأرز', 42)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">كاملة</button>
-                 <button onclick="addToCart('نص حبة دجاج مندي مع الأرز', 21)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">نص</button>
+                <div><h3 class="font-bold">سلطة خيار بالزبادي</h3><p class="text-orange-600">5 ريال</p></div>
+                <button onclick="addToCart('سلطة خيار بالزبادي', 5)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold transition">إضافة +</button>
             </div>
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center text-xs text-gray-400">صورة</div>
-                    <div><h3 class="font-bold">حبة دجاج (مقلوبة)</h3><p class="text-orange-600">23/45 ريال</p></div>
-                </div>
-                <button onclick="addToCart('حبة دجاج مقلوبة مع الأرز', 45)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">كاملة</button>
-                 <button onclick="addToCart('نص حبة دجاج مندي مع الأرز', 23)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">نص</button>
+                <div><h3 class="font-bold">سلطة ذرة</h3><p class="text-orange-600">5 ريال</p></div>
+                <button onclick="addToCart('سلطة ذرة', 5)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold transition">إضافة +</button>
             </div>
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center text-xs text-gray-400">صورة</div>
-                    <div><h3 class="font-bold">حبة دجاج (مدفون)</h3><p class="text-orange-600">21/42 ريال</p></div>
-                </div>
-                <button onclick="addToCart('حبة دجاج مدفون مع الأرز', 42)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">كاملة</button>
-                 <button onclick="addToCart('نص حبة دجاج مندي مع الأرز', 21)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">نص</button>
+                <div><h3 class="font-bold">سلطة زيتون</h3><p class="text-orange-600">5 ريال</p></div>
+                <button onclick="addToCart('سلطة زيتون', 5)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold transition">إضافة +</button>
             </div>
-            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center text-xs text-gray-400">صورة</div>
-                    <div><h3 class="font-bold">حبة دجاج (مضبي)</h3><p class="text-orange-600">21/42 ريال</p></div>
-                </div>
-                <button onclick="addToCart('حبة دجاج مضبي مع الأرز', 42)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">كاملة</button>
-                 <button onclick="addToCart('نص حبة دجاج مندي مع الأرز', 21)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">نص</button>
+             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <div><h3 class="font-bold">سلطة خضراء</h3><p class="text-orange-600">5 ريال</p></div>
+                <button onclick="addToCart('سلطة خضراء', 5)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold transition">إضافة +</button>
             </div>
-            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center text-xs text-gray-400">صورة</div>
-                    <div><h3 class="font-bold">حبة دجاج (شواية)</h3><p class="text-orange-600">21/42 ريال</p></div>
-                </div>
-                <button onclick="addToCart('حبة دجاج شواية مع الأرز', 42)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">كاملة</button>
-                 <button onclick="addToCart('نص حبة دجاج مندي مع الأرز', 21)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">نص</button>
+             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <div><h3 class="font-bold">حمص</h3><p class="text-orange-600">5 ريال</p></div>
+                <button onclick="addToCart('حمص', 5)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold transition">إضافة +</button>
             </div>
         </div>
 
-        
-        <h2 class="category-title">اللحم مع الأرز</h2>
+        <h2 class="category-title">الشعبيات</h2>
         <div class="grid gap-4">
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center text-xs text-gray-400">صورة</div>
-                    <div><h3 class="font-bold">نفر لحم مندي</h3><p class="text-orange-600">85 ريال</p></div>
+                <div><h3 class="font-bold">جريش</h3><p class="text-orange-600">5 / 10 ريال</p></div>
+                <div class="flex gap-1">
+                    <button onclick="addToCart('جريش كبير', 10)" class="bg-orange-600 text-white px-3 py-2 rounded-lg text-sm transition">كبير</button>
+                    <button onclick="addToCart('جريش صغير', 5)" class="bg-orange-600 text-white px-3 py-2 rounded-lg text-sm transition">صغير</button>
                 </div>
-                <button onclick="addToCart('نفر لحم مندي', 85)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">إضافة +</button>
             </div>
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center text-xs text-gray-400">صورة</div>
-                    <div><h3 class="font-bold">نفر لحم حاشي</h3><p class="text-orange-600">50 ريال</p></div>
+                <div><h3 class="font-bold">قرصان</h3><p class="text-orange-600">5 / 10 ريال</p></div>
+                <div class="flex gap-1">
+                    <button onclick="addToCart('قرصان كبير', 10)" class="bg-orange-600 text-white px-3 py-2 rounded-lg text-sm transition">كبير</button>
+                    <button onclick="addToCart('قرصان صغير', 5)" class="bg-orange-600 text-white px-3 py-2 rounded-lg text-sm transition">صغير</button>
                 </div>
-                <button onclick="addToCart('نفر لحم حاشي', 50)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">إضافة +</button>
-            </div>
-        </div>
-
-        <h2 class="category-title">الأدامات</h2>
-        <div class="grid gap-4">
-            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <div><h3 class="font-bold">ملوخية</h3><p class="text-orange-600">5 / 10 ريال</p></div>
-                </div>
-                <button onclick="addToCart('ملوخية كبير', 10)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">كبير</button>
-                <button onclick="addToCart('ملوخية صغير', 5)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">صغير</button>
-            </div>
-            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <div><h3 class="font-bold">جريش</h3><p class="text-orange-600">5 / 10 ريال</p></div>
-                </div>
-                <button onclick="addToCart('جريش كبير', 10)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">كبير</button>
-                <button onclick="addToCart('جريش صغير', 5)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">صغير</button>
-            </div>
-        </div>
-
-        <h2 class="category-title">الحلا</h2>
-        <div class="grid gap-4">
-            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <div><h3 class="font-bold">أم علي</h3><p class="text-orange-600">10 ريال</p></div>
-                </div>
-                <button onclick="addToCart('أم علي', 10)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">إضافة +</button>
-            </div>
-            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <div><h3 class="font-bold">كنافة</h3><p class="text-orange-600">8 ريال</p></div>
-                </div>
-                <button onclick="addToCart('كنافة', 8)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">إضافة +</button>
             </div>
         </div>
 
@@ -171,7 +125,6 @@
     </div>
 
     <script>
-        // جميع السكربتات الخاصة بك بقيت كما هي لضمان عمل الربط مع Google Sheets
         let cart = [];
         let total = 0;
 
@@ -190,69 +143,37 @@
 
         async function sendOrder() {
             if (cart.length === 0) return alert("السلة فارغة!");
-
-            let customerName = prompt("فضلاً ادخل اسمك الكريم:");
+            let customerName = prompt("الاسم الكريم:");
             if(!customerName) return;
-
-            let customerPhone = prompt("ادخل رقم جوالك (05XXXXXXXX):");
-            if(!customerPhone || !/^(05)\d{8}$/.test(customerPhone)) return alert("رقم الجوال غير صحيح");
-
-            let addressDesc = prompt("وصف دقيق للعنوان (مثال: حي الرويضة - خلف مسجد البركة):");
-            if(!addressDesc) return alert("يجب كتابة وصف العنوان لضمان التوصيل");
-
-            let customerNote = prompt("ملاحظات إضافية (اختياري - مثلاً: الرز قليل، بدون شطة):") || "لا يوجد ملاحظات";
+            let customerPhone = prompt("رقم الجوال:");
+            if(!customerPhone) return;
+            let address = prompt("العنوان بالتفصيل:");
 
             const btn = document.getElementById('send-btn');
             btn.disabled = true;
             btn.innerText = "جاري الإرسال...";
 
             let summary = {};
-            cart.forEach(item => {
-                summary[item.name] = (summary[item.name] || 0) + 1;
-            });
-            
-            let formattedDetails = Object.keys(summary).map(key => ({
-                name: key,
-                count: summary[key]
-            }));
-
+            cart.forEach(item => { summary[item.name] = (summary[item.name] || 0) + 1; });
             let orderText = Object.keys(summary).map(key => `${key} (${summary[key]})`).join(" + ");
-
-            let googleMapsLink = "العميل لم يشارك الموقع";
-            if (confirm("هل تسمح بمشاركة موقعك لضمان سرعة التوصيل؟")) {
-                try {
-                    const position = await new Promise((res, rej) => {
-                        navigator.geolocation.getCurrentPosition(res, rej, {enableHighAccuracy: true});
-                    });
-                    googleMapsLink = `https://www.google.com/maps?q=${position.coords.latitude},${position.coords.longitude}`;
-                } catch (err) {}
-            }
 
             try {
                 const scriptURL = "https://script.google.com/macros/s/AKfycbxTvyMfQTbR7hVTVyzxMePgnTLaXJG4yTcIZiEirAFSfOjv3F_Ry5qGQkMks0q-ty0/exec";
-                
                 await fetch(scriptURL, {
                     method: 'POST',
                     mode: 'no-cors',
-                    cache: 'no-cache',
-                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         "الاسم": customerName,
                         "الجوال": customerPhone,
-                        "الوصف": addressDesc,
-                        "الملاحظة": customerNote,
+                        "الوصف": address,
                         "الطلب": orderText,
-                        "تفاصيل_الطلب": formattedDetails,
-                        "المجموع": total + " ريال",
-                        "الموقع": googleMapsLink
+                        "المجموع": total + " ريال"
                     })
                 });
-
-                document.getElementById('modalMsg').innerText = "يا " + customerName + "، تم تسجيل طلبك وبنتواصل معك فوراً.";
+                document.getElementById('modalMsg').innerText = "تم استلام طلبك يا " + customerName;
                 document.getElementById('successModal').style.display = 'block';
-
             } catch (err) {
-                alert("حدث خطأ في الإرسال، جربي مرة ثانية.");
+                alert("حدث خطأ في الإرسال");
             } finally {
                 btn.disabled = false;
                 btn.innerText = "إتمام الطلب (توصيل للموقع)";
@@ -261,7 +182,3 @@
     </script>
 </body>
 </html>
-
-
-
-
