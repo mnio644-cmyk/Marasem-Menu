@@ -27,7 +27,7 @@
     </div>
 
     <header class="bg-orange-600 text-white p-6 text-center shadow-lg">
-        <h1 class="text-2xl font-bold">3مطعم مراسيم العرب</h1>
+        <h1 class="text-2xl font-bold">مطعم مراسيم العرب</h1>
         <p class="text-sm">أصالة المذاق في البدائع | الدفع عند الاستلام</p>
     </header>
 
@@ -74,7 +74,7 @@
             document.getElementById('successModal').style.display = 'none';
             cart = []; total = 0;
             document.getElementById('total-price').innerText = "0";
-            location.reload(); // تحديث الصفحة لتصفير السلة
+            location.reload(); 
         }
 
         async function sendOrder() {
@@ -86,11 +86,27 @@
             let customerPhone = prompt("ادخل رقم جوالك (05XXXXXXXX):");
             if(!customerPhone || !/^(05)\d{8}$/.test(customerPhone)) return alert("رقم الجوال غير صحيح");
 
-            let addressNote = prompt("وصف دقيق للعنوان (رقم البيت، اسم المسجد):") || "بدون وصف";
+            let addressDesc = prompt("وصف دقيق للعنوان (مثال: حي الرويضة - خلف مسجد البركة):");
+            if(!addressDesc) return alert("يجب كتابة وصف العنوان لضمان التوصيل");
+
+            let customerNote = prompt("ملاحظات إضافية (اختياري - مثلاً: الرز قليل، بدون شطة):") || "لا يوجد ملاحظات";
 
             const btn = document.getElementById('send-btn');
             btn.disabled = true;
             btn.innerText = "جاري الإرسال...";
+
+            // تجميع الطلبات لترتيبها (مثال: دجاج العدد 2)
+            let summary = {};
+            cart.forEach(item => {
+                summary[item.name] = (summary[item.name] || 0) + 1;
+            });
+            
+            let formattedDetails = Object.keys(summary).map(key => ({
+                name: key,
+                count: summary[key]
+            }));
+
+            let orderText = Object.keys(summary).map(key => `${key} (${summary[key]})`).join(" + ");
 
             let googleMapsLink = "العميل لم يشارك الموقع";
             if (confirm("هل تسمح بمشاركة موقعك لضمان سرعة التوصيل؟")) {
@@ -102,12 +118,10 @@
                 } catch (err) {}
             }
 
-            let orderSummary = cart.map(item => item.name).join(' + ');
-
             try {
-                // استخدام الرابط الخاص بكِ مباشرة للإكسل
-                const scriptURL = "https://script.google.com/macros/s/AKfycbzeV2Fpi-3eF4Ub9AvnBR3qMMLxMMF7v0_vKmqDmuIXQOpY9_KUVGb9-A0YqQuQWBA/exec";                
-                // إرسال البيانات
+                // الرابط الأخير الخاص بكِ
+                const scriptURL = "https://script.google.com/macros/s/AKfycbzeV2Fpi-3eF4Ub9AvnBR3qMMLxMMF7v0_vKmqDmuIXQOpY9_KUVGb9-A0YqQuQWBA/exec";
+                
                 await fetch(scriptURL, {
                     method: 'POST',
                     mode: 'no-cors',
@@ -116,19 +130,20 @@
                     body: JSON.stringify({
                         "الاسم": customerName,
                         "الجوال": customerPhone,
-                        "الوصف": addressNote,
-                        "الطلب": orderSummary,
+                        "الوصف": addressDesc,
+                        "الملاحظة": customerNote,
+                        "الطلب": orderText,
+                        "تفاصيل_الطلب": formattedDetails,
                         "المجموع": total + " ريال",
                         "الموقع": googleMapsLink
                     })
                 });
 
-                // إظهار رسالة النجاح
                 document.getElementById('modalMsg').innerText = "يا " + customerName + "، تم تسجيل طلبك وبنتواصل معك فوراً.";
                 document.getElementById('successModal').style.display = 'block';
 
             } catch (err) {
-                alert("حدث خطأ بسيط في الإرسال، جربي مرة ثانية.");
+                alert("حدث خطأ في الإرسال، جربي مرة ثانية.");
             } finally {
                 btn.disabled = false;
                 btn.innerText = "إتمام الطلب (توصيل للموقع)";
@@ -137,8 +152,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
