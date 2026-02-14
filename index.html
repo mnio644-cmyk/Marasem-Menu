@@ -291,7 +291,6 @@
             إرسال الطلب عبر واتساب
         </button>
     </div>
-
     <script>
         let cart = [];
         let total = 0;
@@ -311,43 +310,85 @@
 
         async function sendOrder() {
             if (cart.length === 0) return alert("السلة فارغة!");
+            
+            // 1. طلب الاسم
             let customerName = prompt("الاسم الكريم:");
             if(!customerName) return;
-            let customerPhone = prompt("رقم الجوال:");
+
+            // 2. طلب الجوال مع التحقق (05 وطوله 10)
+            let customerPhone = prompt("رقم الجوال (05XXXXXXXX):");
             if(!customerPhone) return;
-            let address = prompt("الملاحظات (وصف العنوان أو ملاحظات الطلب):");
+            const phoneRegex = /^05\d{8}$/;
+            if (!phoneRegex.test(customerPhone)) {
+                alert("خطأ: يجب أن يبدأ الرقم بـ 05 ويتكون من 10 أرقام.");
+                return;
+            }
+
+            // 3. طلب وصف العنوان والملاحظات
+            let addressDesc = prompt("وصف العنوان (الحي - الشارع - رقم البيت):");
+            if(!addressDesc) return;
+            let orderNote = prompt("هل لديك ملاحظات إضافية على الطلب؟") || "لا يوجد";
 
             const btn = document.getElementById('send-btn');
             btn.disabled = true;
-            btn.innerText = "جاري الإرسال...";
+            btn.innerText = "جاري تحديد موقعك...";
 
+            // 4. تحديد موقع GPS
+            let googleMapsLink = "العميل لم يشارك الموقع";
+            if (confirm("هل تسمح بمشاركة موقعك (GPS) لتسهيل وصول السائق؟")) {
+                try {
+                    const position = await new Promise((res, rej) => {
+                        navigator.geolocation.getCurrentPosition(res, rej, { 
+                            enableHighAccuracy: true, 
+                            timeout: 8000 
+                        });
+                    });
+                    googleMapsLink = `https://www.google.com/maps?q=${position.coords.latitude},${position.coords.longitude}`;
+                } catch (err) {
+                    alert("تعذر تحديد الموقع تلقائياً، سيتم إرسال الطلب بدونه.");
+                }
+            }
+
+            btn.innerText = "جاري إرسال الطلب...";
+
+            // 5. تجميع بيانات الطلب
             let summary = {};
             cart.forEach(item => { summary[item.name] = (summary[item.name] || 0) + 1; });
             let orderText = Object.keys(summary).map(key => `${key} [${summary[key]}]`).join(" + ");
+            
+            // تجهيز تفاصيل الطلب لتظهر بشكل جميل في الإيميل
+            let formattedDetails = Object.keys(summary).map(key => ({ name: key, count: summary[key] }));
 
             try {
-                // ملاحظة: الرابط أدناه يحتاج لبياناتك الخاصة في Google Scripts ليعمل بشكل كامل
                 const scriptURL = "https://script.google.com/macros/s/AKfycbxTvyMfQTbR7hVTVyzxMePgnTLaXJG4yTcIZiEirAFSfOjv3F_Ry5qGQkMks0q-ty0/exec";
+                
+                // إرسال البيانات لتطابق أسماء المتغيرات في كود doPost
                 await fetch(scriptURL, {
                     method: 'POST',
                     mode: 'no-cors',
                     body: JSON.stringify({
                         "الاسم": customerName,
                         "الجوال": customerPhone,
-                        "الوصف": address,
-                        "الطلب": orderText,
-                        "المجموع": total + " ريال"
+                        "الوصف": addressDesc,      // يذهب لعمود وصف العنوان
+                        "الملاحظة": orderNote,      // يذهب لعمود الملاحظة
+                        "الطلب": orderText,        // يذهب لعمود الطلب
+                        "تفاصيل_الطلب": formattedDetails, // لمعالجة الـ Html في الإيميل
+                        "المجموع": total + " ريال",
+                        "الموقع": googleMapsLink
                     })
                 });
+
                 document.getElementById('modalMsg').innerText = "تم استلام طلبك يا " + customerName;
                 document.getElementById('successModal').style.display = 'block';
             } catch (err) {
-                alert("حدث خطأ، يرجى المحاولة لاحقاً");
+                alert("حدث خطأ في الاتصال، يرجى المحاولة مرة أخرى.");
             } finally {
                 btn.disabled = false;
-                btn.innerText = "إرسال الطلب عبر واتساب";
+                btn.innerText = "إرسال الطلب";
             }
         }
     </script>
+    
 </body>
 </html>
+
