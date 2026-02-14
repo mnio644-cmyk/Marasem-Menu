@@ -12,6 +12,7 @@
         .modal-content { background-color: white; margin: 20% auto; padding: 30px; border-radius: 20px; width: 85%; max-width: 400px; text-align: center; position: relative; animation: slideIn 0.3s ease-out; }
         @keyframes slideIn { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         .close-x { position: absolute; top: 10px; left: 15px; font-size: 28px; font-weight: bold; color: #aaa; cursor: pointer; line-height: 1; }
+        .category-title { border-right: 4px solid #ea580c; padding-right: 10px; margin: 20px 0 10px 0; font-weight: bold; color: #374151; }
     </style>
 </head>
 <body class="bg-gray-50 pb-40">
@@ -32,22 +33,87 @@
     </header>
 
     <main class="p-4 max-w-md mx-auto">
+        
+        <h2 class="category-title">الذبائح (حسب الطلب)</h2>
         <div class="grid gap-4">
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
                 <div class="flex items-center gap-3">
-                    <img src="https://via.placeholder.com/60" alt="لحم" class="w-16 h-16 rounded-lg object-cover border">
-                    <div><h3 class="font-bold">نفر لحم مندي</h3><p class="text-orange-600">75 ريال</p></div>
+                    <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center text-xs text-gray-400">صورة</div>
+                    <div><h3 class="font-bold">تيس كامل مندي</h3><p class="text-orange-600">1380 ريال</p></div>
                 </div>
-                <button onclick="addToCart('نفر لحم مندي', 75)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">إضافة +</button>
+                <button onclick="addToCart('تيس كامل مندي', 1380)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">إضافة +</button>
             </div>
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
                 <div class="flex items-center gap-3">
-                    <img src="https://via.placeholder.com/60" alt="دجاج" class="w-16 h-16 rounded-lg object-cover border">
-                    <div><h3 class="font-bold">حبة دجاج مع الأرز</h3><p class="text-orange-600">40 ريال</p></div>
+                    <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center text-xs text-gray-400">صورة</div>
+                    <div><h3 class="font-bold">نص تيس مندي</h3><p class="text-orange-600">690 ريال</p></div>
                 </div>
-                <button onclick="addToCart('حبة دجاج مع الأرز', 40)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">إضافة +</button>
+                <button onclick="addToCart('نص تيس مندي', 690)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">إضافة +</button>
             </div>
         </div>
+
+        <h2 class="category-title">الدجاج مع الأرز</h2>
+        <div class="grid gap-4">
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center text-xs text-gray-400">صورة</div>
+                    <div><h3 class="font-bold">حبة دجاج (مندي/مضغوط)</h3><p class="text-orange-600">42 ريال</p></div>
+                </div>
+                <button onclick="addToCart('حبة دجاج مع الأرز', 42)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">إضافة +</button>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center text-xs text-gray-400">صورة</div>
+                    <div><h3 class="font-bold">نص حبة دجاج</h3><p class="text-orange-600">21 ريال</p></div>
+                </div>
+                <button onclick="addToCart('نص حبة دجاج مع الأرز', 21)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">إضافة +</button>
+            </div>
+        </div>
+
+        <h2 class="category-title">اللحم مع الأرز</h2>
+        <div class="grid gap-4">
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center text-xs text-gray-400">صورة</div>
+                    <div><h3 class="font-bold">نفر لحم مندي</h3><p class="text-orange-600">85 ريال</p></div>
+                </div>
+                <button onclick="addToCart('نفر لحم مندي', 85)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">إضافة +</button>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center text-xs text-gray-400">صورة</div>
+                    <div><h3 class="font-bold">نفر لحم حاشي</h3><p class="text-orange-600">50 ريال</p></div>
+                </div>
+                <button onclick="addToCart('نفر لحم حاشي', 50)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">إضافة +</button>
+            </div>
+        </div>
+
+        <h2 class="category-title">الأدامات</h2>
+        <div class="grid gap-4">
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div><h3 class="font-bold">ملوخية / باميه</h3><p class="text-orange-600">10 ريال</p></div>
+                </div>
+                <button onclick="addToCart('إدام', 10)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">إضافة +</button>
+            </div>
+        </div>
+
+        <h2 class="category-title">الحلا</h2>
+        <div class="grid gap-4">
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div><h3 class="font-bold">أم علي</h3><p class="text-orange-600">10 ريال</p></div>
+                </div>
+                <button onclick="addToCart('أم علي', 10)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">إضافة +</button>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div><h3 class="font-bold">كنافة</h3><p class="text-orange-600">8 ريال</p></div>
+                </div>
+                <button onclick="addToCart('كنافة', 8)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold active:scale-95 transition">إضافة +</button>
+            </div>
+        </div>
+
     </main>
 
     <div class="fixed bottom-0 left-0 right-0 bg-white p-4 shadow-2xl max-w-md mx-auto rounded-t-2xl border-t">
@@ -61,6 +127,7 @@
     </div>
 
     <script>
+        // جميع السكربتات الخاصة بك بقيت كما هي لضمان عمل الربط مع Google Sheets
         let cart = [];
         let total = 0;
 
@@ -95,7 +162,6 @@
             btn.disabled = true;
             btn.innerText = "جاري الإرسال...";
 
-            // تجميع الطلبات لترتيبها (مثال: دجاج العدد 2)
             let summary = {};
             cart.forEach(item => {
                 summary[item.name] = (summary[item.name] || 0) + 1;
@@ -119,7 +185,6 @@
             }
 
             try {
-                // الرابط الأخير الخاص بكِ
                 const scriptURL = "https://script.google.com/macros/s/AKfycbxTvyMfQTbR7hVTVyzxMePgnTLaXJG4yTcIZiEirAFSfOjv3F_Ry5qGQkMks0q-ty0/exec";
                 
                 await fetch(scriptURL, {
@@ -152,4 +217,3 @@
     </script>
 </body>
 </html>
-
